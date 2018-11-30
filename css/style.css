@@ -36,9 +36,10 @@ body {
       .menu.off .menu__wheel--self {
         position: absolute;
         opacity: 1;
-        background-size: contain;
-        height: 180px;
-        width: 180px;
+        background-position: -120px;
+        background-size: 220%;
+        height: 220px;
+        width: 220px;
         cursor: pointer;
         transition: .3s ease; }
         .menu.off .menu__wheel--self:hover {
@@ -50,8 +51,10 @@ body {
           animation-name: roll;
           animation-iteration-count: infinite;
           animation-timing-function: linear;
-          height: 200px;
-          width: 200px; }
+          background-position: -130px;
+          background-size: 220%;
+          height: 240px;
+          width: 240px; }
       .menu.off .menu__close, .menu.off .menu__cont, .menu.off .menu__background--credit {
         display: none; }
       .menu.off .menu__background {
@@ -311,7 +314,7 @@ body {
       border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 10px 30px 10px 30px;
+      padding: 15px 35px 15px 35px;
       font-size: 20px;
       font-weight: 500;
       letter-spacing: 1px;
@@ -323,12 +326,13 @@ body {
       background: url("../img/countdown.svg");
       background-position: center center;
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: 100% 100%;
       width: 100%;
       height: 100%;
       margin-left: 15vw;
+      padding-top: 10vh;
       z-index: 10;
-      width: 350px; }
+      width: 400px; }
     .intro__scroll {
       position: fixed;
       top: 50vh;
