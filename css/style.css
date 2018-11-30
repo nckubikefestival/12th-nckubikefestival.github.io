@@ -222,8 +222,7 @@ body {
         background: url("../img/watch_vid.svg");
         background-repeat: no-repeat;
         background-position: 50% 55%;
-        background-size: 500% 500%;
-      }
+        background-size: 500% 500%; }
       .menu__option.go_right {
         background: url("../img/go_right.svg") #dad6b2; }
       .menu__option:hover {
@@ -347,7 +346,7 @@ body {
         background-size: 120% 120%;
         height: 100vh;
         width: 40vw; }
-      .intro__logo--deco {
+      .intro__logo--top, .intro__logo--bottom {
         display: none; }
     .intro__title {
       position: absolute;
@@ -1261,7 +1260,7 @@ body {
       transition: .5s ease;
       height: 0px;
       width: 0px; }
-    .menu__wheel--side {
+    .menu__wheel--side, .menu__main_menu {
       display: none; }
     .menu__sidebar {
       position: fixed;
@@ -1375,6 +1374,7 @@ body {
       top: 30px;
       right: 30px;
       background: url("../img/burger.svg") #dad6b2;
+      border-radius: 100%;
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain;
@@ -1401,11 +1401,14 @@ body {
       color: white;
       cursor: pointer; }
       .menu__option.video {
-        background: url("../img/watch_vid.svg"); }
+        background: url("../img/watch_vid.svg");
+        background-repeat: no-repeat;
+        background-position: 50% 55%;
+        background-size: 540% 540%; }
       .menu__option.go_right {
         background: url("../img/go_right.svg") #dad6b2; }
       .menu__option:hover {
-        background-color: #172a88; }
+        background-color: white; }
       .menu__option:active {
         background-color: black; }
     .menu__background {
@@ -1464,7 +1467,7 @@ body {
         background-size: contain;
         height: 100vh;
         width: 40vw; }
-      .intro__logo--deco {
+      .intro__logo--top, .intro__logo--bottom {
         display: none; }
     .intro__title {
       position: absolute;
@@ -1472,15 +1475,17 @@ body {
       left: 10vw;
       top: 25vh;
       display: inline-block;
-      background: #172a88;
+      background: #942323;
+      border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 10px 10px 10px 18px;
+      padding: 10px 18px 10px 18px;
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 1px;
       line-height: 28px;
-      transform: skewY(-5deg); }
+      transform: rotateZ(-5deg);
+      }
     .intro__cont {
       position: absolute;
       top: 25vh;
@@ -1512,8 +1517,8 @@ body {
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
-        height: 180px;
-        width: 70px;
+        height: 516px;
+        width: 222px;
         animation-name: up_down;
         animation-duration: 2s;
         animation-iteration-count: infinite; }
@@ -2400,6 +2405,7 @@ body {
       top: 30px;
       right: 30px;
       background: url("../img/burger.svg") #dad6b2;
+      border-radius: 100%;
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain;
@@ -2426,11 +2432,14 @@ body {
       color: white;
       cursor: pointer; }
       .menu__option.video {
-        background: url("../img/watch_vid.svg"); }
+        background: url("../img/watch_vid.svg");
+        background-repeat: no-repeat;
+        background-position: 50% 55%;
+        background-size: 540% 540%; }
       .menu__option.go_right {
         background: url("../img/go_right.svg") #dad6b2; }
       .menu__option:hover {
-        background-color: #172a88; }
+        background-color: white; }
       .menu__option:active {
         background-color: black; }
     .menu__background {
@@ -2489,7 +2498,7 @@ body {
         background-size: contain;
         height: 100vh;
         width: 40vw; }
-      .intro__logo--deco {
+      .intro__logo--top, .intro__logo--bottom {
         display: none; }
     .intro__title {
       position: absolute;
@@ -2497,15 +2506,16 @@ body {
       left: 6vw;
       top: 25vh;
       display: inline-block;
-      background: #172a88;
+      background: #942323;
+      border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 5px 5px 5px 12px;
+      padding: 5px 12px 5px 12px;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 1px;
       line-height: 28px;
-      transform: skewY(-5deg); }
+      transform: rotateZ(-5deg); }
     .intro__cont {
       position: absolute;
       top: 25vh;
@@ -2513,7 +2523,7 @@ body {
       margin-left: 8vw;
       z-index: 10;
       width: 350px; }
-    .intro__scroll {
+    .intro__scroll, .menu__main_menu{
       display: none; }
     .intro__background {
       position: absolute;
@@ -3432,7 +3442,10 @@ body {
       color: white;
       cursor: pointer; }
       .menu__option.video {
-        background: url("../img/watch_vid.svg"); }
+        background: url("../img/watch_vid.svg");
+        background-repeat: no-repeat;
+        background-position: 50% 55%;
+        background-size: 500% 500%; }
       .menu__option.go_right {
         background: url("../img/go_right.svg") #dad6b2; }
       .menu__option:hover {
@@ -3495,23 +3508,26 @@ body {
         background-size: contain;
         height: 100vh;
         width: 40vw; }
+        /*
       .intro__logo--deco {
         display: none; }
+        */
     .intro__title {
       position: absolute;
       z-index: 20;
       left: 8vw;
       top: 34vh;
       display: block;
-      background: #172a88;
+      background: #942323;
+      border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 5px 5px 5px 12px;
+      padding: 5px 12px 5px 12px;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 1px;
       line-height: 28px;
-      transform: skewY(-5deg); }
+      transform: rotateZ(-5deg); }
     .intro__cont {
       position: absolute;
       top: 50vh;
@@ -4310,6 +4326,7 @@ body {
       z-index: 0;
       top: 15px;
       right: 15px;
+      border-radius: 100%;
       background: url("../img/burger.svg") #dad6b2;
       background-position: center center;
       background-repeat: no-repeat;
@@ -4327,7 +4344,10 @@ body {
       height: 50px;
       width: 50px; }
       .menu__option.video {
-        background: url("../img/watch_vid.svg"); }
+        background: url("../img/watch_vid.svg");
+        background-repeat: no-repeat;
+        background-position: 50% 55%;
+        background-size: 540% 540%; }
       .menu__option.go_right {
         background: url("../img/go_right.svg") #dad6b2; }
     .menu__background {
@@ -4373,37 +4393,56 @@ body {
       position: absolute;
       z-index: 10;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      left: 0;
+      left: -2vw;
       top: 3vh;
       height: 57vh;
       width: 100vw; }
-      .intro__logo--pic {
-        position: absolute;
-        background: url("../img/logo_2.svg");
-        background-position: center center;
+      .intro__logo--top {
+        flex: 1;
+        background: url("../img/wheel_top.svg");
+        background-position: left 20%;
+        margin-left: -20%;
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: 50%;
         width: 100%;
         height: 100%; }
-      .intro__logo--deco {
-        display: none; }
+      .intro__logo--pic {
+        position: absolute;
+        flex: 2;
+        background: url("../img/logo.svg");
+        background-position: center 40%;
+        background-repeat: no-repeat;
+        background-size: 120%;
+        width: 100%;
+        height: 100%; }
+      .intro__logo--bottom {
+        flex: 1;
+        background: url("../img/wheel_bottom.svg");
+        background-position: right center;
+        margin-right: -30%;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        width: 100%;
+        height: 100%; }
     .intro__title {
       position: absolute;
       z-index: 20;
-      left: 0;
+      left: 3vw;
       top: 57vh;
       display: inline-block;
-      background: #172a88;
+      background: #942323;
+      border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 10px 10px 10px 18px;
+      padding: 10px 18px 10px 18px;
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 1px;
       line-height: 28px;
-      transform: skewY(-5deg); }
+      transform: rotateZ(-5deg); }
     .intro__cont {
       position: absolute;
       z-index: 30;
@@ -4436,7 +4475,7 @@ body {
         animation-name: up_down;
         animation-duration: 2s;
         animation-iteration-count: infinite; }
-    .intro__background {
+    .intro__background, .menu__main_menu {
       display: none; }
   .dept {
     position: relative;
