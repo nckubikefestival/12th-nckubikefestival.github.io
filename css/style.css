@@ -36,9 +36,10 @@ body {
       .menu.off .menu__wheel--self {
         position: absolute;
         opacity: 1;
-        background-size: contain;
-        height: 180px;
-        width: 180px;
+        background-position: -120px;
+        background-size: 220%;
+        height: 220px;
+        width: 220px;
         cursor: pointer;
         transition: .3s ease; }
         .menu.off .menu__wheel--self:hover {
@@ -50,8 +51,10 @@ body {
           animation-name: roll;
           animation-iteration-count: infinite;
           animation-timing-function: linear;
-          height: 200px;
-          width: 200px; }
+          background-position: -130px;
+          background-size: 220%;
+          height: 240px;
+          width: 240px; }
       .menu.off .menu__close, .menu.off .menu__cont, .menu.off .menu__background--credit {
         display: none; }
       .menu.off .menu__background {
@@ -75,14 +78,25 @@ body {
       background-position: center center;
       background-repeat: no-repeat;
       transition: .5s ease; }
-    .menu__wheel--side {
+    .menu__wheel--top {
       position: absolute;
       z-index: -1;
-      background: url("../img/wheel_side.svg");
-      background-position: center center;
+      background: url("../img/wheel_top.svg");
+      right: 50%;
+      bottom: 55%;
       background-repeat: no-repeat;
-      background-size: contain;
-      height: 320px;
+      background-size: 120% 120%;
+      height: 250px;
+      width: 250px; }
+    .menu__wheel--bottom {
+      position: absolute;
+      z-index: -1;
+      background: url("../img/wheel_bottom.svg");
+      left: 48%;
+      top: 50%;
+      background-repeat: no-repeat;
+      background-size: 120% 120%;
+      height: 250px;
       width: 250px; }
     .menu__sidebar {
       position: fixed;
@@ -218,24 +232,20 @@ body {
         background-color: white; }
       .menu__option:active {
         background-color: black; }
-    .menu__totop {
+    .menu__activity_countdown {
       position: fixed;
       z-index: 0;
-      bottom: 50px;
-      right: 50px;
-      background: url("../img/to_top.svg") #8ebde6;
+      top: 200px;
+      right: -50px;
+      background: url("../img/activity_countdown.svg");
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain;
-      height: 60px;
-      width: 60px;
+      height: 516px;
+      width: 222px;
       transition: .3s ease;
       color: white;
       cursor: pointer; }
-      .menu__totop:hover {
-        background-color: #172a88; }
-      .menu__totop:active {
-        background-color: black; }
     .menu__background {
       position: fixed;
       right: 0;
@@ -289,7 +299,7 @@ body {
         background: url("../img/logo.svg");
         background-position: center center;
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: 120% 120%;
         height: 100vh;
         width: 40vw; }
       .intro__logo--deco {
@@ -304,7 +314,7 @@ body {
       border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 10px 30px 10px 30px;
+      padding: 15px 35px 15px 35px;
       font-size: 20px;
       font-weight: 500;
       letter-spacing: 1px;
@@ -316,20 +326,22 @@ body {
       background: url("../img/countdown.svg");
       background-position: center center;
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: 100% 100%;
       width: 100%;
       height: 100%;
       margin-left: 15vw;
+      padding-top: 10vh;
       z-index: 10;
-      width: 350px; }
+      width: 400px; }
     .intro__scroll {
       position: fixed;
       top: 50vh;
       left: 0vw;
       z-index: 5;
-      margin-top: -100px;
-      height: 180px;
-      width: 70px; }
+      margin-top: -250px;
+      margin-left: -50px;
+      height: 516px;
+      width: 222px; }
       /*
       .intro__scroll--1 {
         position: absolute;
@@ -346,8 +358,8 @@ body {
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
-        height: 180px;
-        width: 70px;
+        height: 516px;
+        width: 222px;
         animation-name: up_down;
         animation-duration: 2s;
         animation-iteration-count: infinite; }
@@ -1311,24 +1323,6 @@ body {
         background-color: #172a88; }
       .menu__option:active {
         background-color: black; }
-    .menu__totop {
-      position: fixed;
-      z-index: 0;
-      bottom: 30px;
-      right: 30px;
-      background: url("../img/to_top.svg") #8ebde6;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      height: 60px;
-      width: 60px;
-      transition: .3s ease;
-      color: white;
-      cursor: pointer; }
-      .menu__totop:hover {
-        background-color: #172a88; }
-      .menu__totop:active {
-        background-color: black; }
     .menu__background {
       position: fixed;
       right: 0;
@@ -2045,6 +2039,18 @@ body {
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain; }
+      .register__wheel--side {
+        position: absolute;
+        display: block;
+        z-index: -1;
+        top: 33vh;
+        left: 18vw;
+        height: 35vh;
+        width: 62vw;
+        background: url("../img/decoration_3.svg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: contain; }
   .about {
     position: relative;
     left: 0;
@@ -2341,24 +2347,6 @@ body {
       .menu__option:hover {
         background-color: #172a88; }
       .menu__option:active {
-        background-color: black; }
-    .menu__totop {
-      position: fixed;
-      z-index: 0;
-      bottom: 30px;
-      right: 30px;
-      background: url("../img/to_top.svg") #8ebde6;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      height: 60px;
-      width: 60px;
-      transition: .3s ease;
-      color: white;
-      cursor: pointer; }
-      .menu__totop:hover {
-        background-color: #172a88; }
-      .menu__totop:active {
         background-color: black; }
     .menu__background {
       position: fixed;
@@ -3366,24 +3354,6 @@ body {
         background-color: #172a88; }
       .menu__option:active {
         background-color: black; }
-    .menu__totop {
-      position: fixed;
-      z-index: 0;
-      bottom: 20px;
-      right: 15px;
-      background: url("../img/to_top.svg") #8ebde6;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      height: 50px;
-      width: 50px;
-      transition: .3s ease;
-      color: white;
-      cursor: pointer; }
-      .menu__totop:hover {
-        background-color: #172a88; }
-      .menu__totop:active {
-        background-color: black; }
     .menu__background {
       position: fixed;
       right: 0;
@@ -4275,17 +4245,6 @@ body {
         background: url("../img/watch_vid.svg"); }
       .menu__option.go_right {
         background: url("../img/go_right.svg") #8ebde6; }
-    .menu__totop {
-      position: fixed;
-      z-index: 0;
-      bottom: 15px;
-      right: 15px;
-      background: url("../img/to_top.svg") #8ebde6;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: contain;
-      height: 50px;
-      width: 50px; }
     .menu__background {
       position: fixed;
       right: 0;
