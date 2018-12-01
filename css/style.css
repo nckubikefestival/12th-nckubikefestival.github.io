@@ -82,7 +82,7 @@ body {
       position: absolute;
       z-index: -1;
       background: url("../img/wheel_top.svg");
-      right: 50%;
+      right: 52%;
       bottom: 55%;
       background-repeat: no-repeat;
       background-size: 120% 120%;
@@ -149,8 +149,6 @@ body {
       position: fixed;
       z-index: 10;
       color: white;
-      font-size: 20px;
-      font-weight: 600;
       letter-spacing: 1px;
       line-height: 28px;
       display: flex;
@@ -215,8 +213,8 @@ body {
       background-repeat: no-repeat;
       background-size: contain;
       overflow: hidden;
-      height: 60px;
-      width: 60px;
+      height: 80px;
+      width: 80px;
       transition: .3s ease;
       color: white;
       cursor: pointer; }
@@ -224,14 +222,60 @@ body {
         background: url("../img/watch_vid.svg");
         background-repeat: no-repeat;
         background-position: 50% 55%;
-        background-size: 300px 300px;
-      }
+        background-size: 500% 500%; }
       .menu__option.go_right {
-        background: url("../img/go_right.svg") #8ebde6; }
+        background: url("../img/go_right.svg") #dad6b2; }
       .menu__option:hover {
         background-color: white; }
       .menu__option:active {
         background-color: black; }
+    .menu__main_menu {
+      position: fixed;
+      display: flex;
+      justify-content: center;
+      z-index: 0;
+      bottom: 50px;
+      height: 200px;
+      width: 100%; }
+      .menu__btn {
+        display: flex;
+        padding: 20px;
+        flex-direction: column; }
+      .menu__btn input[type="button"]{
+        cursor: pointer;
+        flex: 3;
+        width: 150px;
+        height: 150px;
+        border: 0px; }
+      .menu__btn span {
+        text-align: center;
+        flex: 1;
+        color: #942323; }
+    #news {
+      background: url("../img/menu_news.svg");
+      background-position: 60% 40%;
+      background-size: 150%;
+    }
+    #abstract {
+      background: url("../img/menu_abstract.svg");
+      background-position: 65% 60%;
+      background-size: 150%;
+    }
+    #history {
+      background: url("../img/menu_history.svg");
+      background-position: 50% 40%;
+      background-size: 150%;
+    }
+    #app_intro {
+      background: url("../img/menu_app_intro.svg");
+      background-position: 50% 60%;
+      background-size: 150%;
+    }
+    #dep_intro {
+      background: url("../img/menu_dep_intro.svg");
+      background-position: 60% 50%;
+      background-size: 150%;
+    }
     .menu__activity_countdown {
       position: fixed;
       z-index: 0;
@@ -250,7 +294,7 @@ body {
       position: fixed;
       right: 0;
       height: 100vh;
-      background: #8ebde6; }
+      background: #dad6b2; }
       .menu__background--credit {
         position: absolute;
         display: block;
@@ -302,13 +346,13 @@ body {
         background-size: 120% 120%;
         height: 100vh;
         width: 40vw; }
-      .intro__logo--deco {
+      .intro__logo--top, .intro__logo--bottom {
         display: none; }
     .intro__title {
       position: absolute;
       z-index: 20;
-      left: 12vw;
-      top: 25vh;
+      left: 8vw;
+      top: 17vh;
       display: inline-block;
       background: #942323;
       border-radius: 50px;
@@ -321,18 +365,58 @@ body {
       line-height: 28px;
       transform: rotateZ(-5deg);
     }
-    .intro__cont {
+    .intro__cont{
       position: absolute;
+      right: 0px;
+      width: 30%;
+      height: 400px;
+      left: 8vw;
+      margin-top: 30vh;
       background: url("../img/countdown.svg");
-      background-position: center center;
+      background-position: right bottom;
       background-repeat: no-repeat;
-      background-size: 100% 100%;
-      width: 100%;
-      height: 100%;
-      margin-left: 15vw;
-      padding-top: 10vh;
+      background-size: 80% 80%; 
+    }
+    .intro__num {
       z-index: 10;
-      width: 400px; }
+    }
+    .intro__num.num1 {
+      position: absolute;
+      width: 30%;
+      height: 400px;
+      left: 8vw;
+      margin-top: 30vh;
+      background: url("../img/six.svg");
+      background-position: -180px -120px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+    .intro__num.num2 {
+      position: absolute;
+      width: 30%;
+      height: 400px;
+      left: 8vw;
+      margin-top: 30vh;
+      background: url("../img/nine.svg");
+      background-position: -20px -92px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+    }
+    .intro__dot {
+      position: absolute;
+      display: flex;
+      right: 0px;
+      width: 9%;
+      height: 100px;
+      left: 26vw;
+      margin-top: 35vh;
+    }
+    #dot1,#dot2,#dot3{
+      flex: 1;
+      background: url("../img/dot.svg");
+      background-size: 800% 800%;
+      background-position: 40% 51%;
+    }
     .intro__scroll {
       position: fixed;
       top: 50vh;
@@ -624,7 +708,7 @@ body {
         height: 100%;
         width: 100%;
         padding: 20px 80px;
-        background: #8ebde6;
+        background: #dad6b2;
         transform: skewY(-5deg); }
     .event__decoration {
       position: absolute;
@@ -740,7 +824,7 @@ body {
             right: 0;
             height: 70%;
             width: 5px;
-            background: #8ebde6; }
+            background: #dad6b2; }
         .schedule__cont--item--time {
           position: absolute;
           display: inline-flex;
@@ -809,7 +893,7 @@ body {
             right: 0;
             height: 70%;
             width: 5px;
-            background: #8ebde6; }
+            background: #dad6b2; }
         .schedule__cont--list--time {
           position: absolute;
           display: inline-flex;
@@ -862,7 +946,7 @@ body {
               margin-right: 10px;
               height: 2px;
               width: 10%;
-              background: #8ebde6; }
+              background: #dad6b2; }
         .schedule__cont--list--more {
           position: relative;
           display: block;
@@ -885,7 +969,7 @@ body {
       .schedule__cont--background {
         position: absolute;
         z-index: -1;
-        background: #8ebde6;
+        background: #dad6b2;
         top: -50px;
         height: 100%;
         width: 100%;
@@ -1080,7 +1164,7 @@ body {
     .about__background {
       position: absolute;
       z-index: -1;
-      background: #8ebde6;
+      background: #dad6b2;
       top: -50px;
       height: calc(100% - 150px);
       width: 100%;
@@ -1176,7 +1260,7 @@ body {
       transition: .5s ease;
       height: 0px;
       width: 0px; }
-    .menu__wheel--side {
+    .menu__wheel--side, .menu__main_menu {
       display: none; }
     .menu__sidebar {
       position: fixed;
@@ -1289,7 +1373,8 @@ body {
       z-index: 0;
       top: 30px;
       right: 30px;
-      background: url("../img/burger.svg") #8ebde6;
+      background: url("../img/burger.svg") #dad6b2;
+      border-radius: 100%;
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain;
@@ -1316,18 +1401,21 @@ body {
       color: white;
       cursor: pointer; }
       .menu__option.video {
-        background: url("../img/watch_vid.svg"); }
+        background: url("../img/watch_vid.svg");
+        background-repeat: no-repeat;
+        background-position: 50% 55%;
+        background-size: 540% 540%; }
       .menu__option.go_right {
-        background: url("../img/go_right.svg") #8ebde6; }
+        background: url("../img/go_right.svg") #dad6b2; }
       .menu__option:hover {
-        background-color: #172a88; }
+        background-color: white; }
       .menu__option:active {
         background-color: black; }
     .menu__background {
       position: fixed;
       right: 0;
       height: 100vh;
-      background: #8ebde6; }
+      background: #dad6b2; }
       .menu__background--credit {
         position: absolute;
         display: block;
@@ -1379,7 +1467,7 @@ body {
         background-size: contain;
         height: 100vh;
         width: 40vw; }
-      .intro__logo--deco {
+      .intro__logo--top, .intro__logo--bottom {
         display: none; }
     .intro__title {
       position: absolute;
@@ -1387,15 +1475,17 @@ body {
       left: 10vw;
       top: 25vh;
       display: inline-block;
-      background: #172a88;
+      background: #942323;
+      border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 10px 10px 10px 18px;
+      padding: 10px 18px 10px 18px;
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 1px;
       line-height: 28px;
-      transform: skewY(-5deg); }
+      transform: rotateZ(-5deg);
+      }
     .intro__cont {
       position: absolute;
       top: 25vh;
@@ -1427,8 +1517,8 @@ body {
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
-        height: 180px;
-        width: 70px;
+        height: 516px;
+        width: 222px;
         animation-name: up_down;
         animation-duration: 2s;
         animation-iteration-count: infinite; }
@@ -1561,7 +1651,7 @@ body {
         height: 100%;
         width: 100%;
         padding: 20px 40px;
-        background: #8ebde6;
+        background: #dad6b2;
         transform: skewY(-5deg); }
     .dept__decoration {
       position: absolute;
@@ -1693,7 +1783,7 @@ body {
         height: 100%;
         width: 100%;
         padding: 20px 40px;
-        background: #8ebde6;
+        background: #dad6b2;
         transform: skewY(-5deg); }
     .event__decoration {
       position: absolute;
@@ -1809,7 +1899,7 @@ body {
             right: 0;
             height: 70%;
             width: 5px;
-            background: #8ebde6; }
+            background: #dad6b2; }
         .schedule__cont--item--time {
           position: absolute;
           display: inline-flex;
@@ -1878,7 +1968,7 @@ body {
             right: 0;
             height: 70%;
             width: 5px;
-            background: #8ebde6; }
+            background: #dad6b2; }
         .schedule__cont--list--time {
           position: absolute;
           display: inline-flex;
@@ -1931,7 +2021,7 @@ body {
               margin-right: 10px;
               height: 2px;
               width: 10%;
-              background: #8ebde6; }
+              background: #dad6b2; }
         .schedule__cont--list--more {
           position: relative;
           display: block;
@@ -1954,7 +2044,7 @@ body {
       .schedule__cont--background {
         position: absolute;
         z-index: -1;
-        background: #8ebde6;
+        background: #dad6b2;
         top: -50px;
         height: 100%;
         width: 100%;
@@ -2148,7 +2238,7 @@ body {
     .about__background {
       position: absolute;
       z-index: -1;
-      background: #8ebde6;
+      background: #dad6b2;
       top: -50px;
       height: calc(100% - 150px);
       width: 100%;
@@ -2314,7 +2404,8 @@ body {
       z-index: 0;
       top: 30px;
       right: 30px;
-      background: url("../img/burger.svg") #8ebde6;
+      background: url("../img/burger.svg") #dad6b2;
+      border-radius: 100%;
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain;
@@ -2341,18 +2432,21 @@ body {
       color: white;
       cursor: pointer; }
       .menu__option.video {
-        background: url("../img/watch_vid.svg"); }
+        background: url("../img/watch_vid.svg");
+        background-repeat: no-repeat;
+        background-position: 50% 55%;
+        background-size: 540% 540%; }
       .menu__option.go_right {
-        background: url("../img/go_right.svg") #8ebde6; }
+        background: url("../img/go_right.svg") #dad6b2; }
       .menu__option:hover {
-        background-color: #172a88; }
+        background-color: white; }
       .menu__option:active {
         background-color: black; }
     .menu__background {
       position: fixed;
       right: 0;
       height: 100vh;
-      background: #8ebde6; }
+      background: #dad6b2; }
       .menu__background--credit {
         position: absolute;
         display: block;
@@ -2404,7 +2498,7 @@ body {
         background-size: contain;
         height: 100vh;
         width: 40vw; }
-      .intro__logo--deco {
+      .intro__logo--top, .intro__logo--bottom {
         display: none; }
     .intro__title {
       position: absolute;
@@ -2412,15 +2506,16 @@ body {
       left: 6vw;
       top: 25vh;
       display: inline-block;
-      background: #172a88;
+      background: #942323;
+      border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 5px 5px 5px 12px;
+      padding: 5px 12px 5px 12px;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 1px;
       line-height: 28px;
-      transform: skewY(-5deg); }
+      transform: rotateZ(-5deg); }
     .intro__cont {
       position: absolute;
       top: 25vh;
@@ -2428,7 +2523,7 @@ body {
       margin-left: 8vw;
       z-index: 10;
       width: 350px; }
-    .intro__scroll {
+    .intro__scroll, .menu__main_menu{
       display: none; }
     .intro__background {
       position: absolute;
@@ -2579,7 +2674,7 @@ body {
         left: 0vw;
         height: 100%;
         width: 100vw;
-        background: #8ebde6;
+        background: #dad6b2;
         transform: skewY(-5deg); }
     .dept__decoration {
       position: absolute;
@@ -2743,7 +2838,7 @@ body {
         left: 0vw;
         height: 100%;
         width: 100vw;
-        background: #8ebde6;
+        background: #dad6b2;
         transform: skewY(-5deg); }
     .event__decoration {
       position: absolute;
@@ -2860,7 +2955,7 @@ body {
             right: 0;
             height: 70%;
             width: 5px;
-            background: #8ebde6; }
+            background: #dad6b2; }
         .schedule__cont--item--time {
           position: absolute;
           display: inline-flex;
@@ -2929,7 +3024,7 @@ body {
             right: 0;
             height: 70%;
             width: 5px;
-            background: #8ebde6; }
+            background: #dad6b2; }
         .schedule__cont--list--time {
           position: absolute;
           display: inline-flex;
@@ -2982,7 +3077,7 @@ body {
               margin-right: 10px;
               height: 2px;
               width: 10%;
-              background: #8ebde6; }
+              background: #dad6b2; }
         .schedule__cont--list--more {
           position: relative;
           display: block;
@@ -3005,7 +3100,7 @@ body {
       .schedule__cont--background {
         position: absolute;
         z-index: -1;
-        background: #8ebde6;
+        background: #dad6b2;
         top: -50px;
         height: 100%;
         width: 100%;
@@ -3155,7 +3250,7 @@ body {
     .about__background {
       position: absolute;
       z-index: -1;
-      background: #8ebde6;
+      background: #dad6b2;
       top: -60px;
       height: calc(100% - 50px);
       width: 100%;
@@ -3320,7 +3415,7 @@ body {
       z-index: 0;
       top: 20px;
       right: 15px;
-      background: url("../img/burger.svg") #8ebde6;
+      background: url("../img/burger.svg") #dad6b2;
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain;
@@ -3347,9 +3442,12 @@ body {
       color: white;
       cursor: pointer; }
       .menu__option.video {
-        background: url("../img/watch_vid.svg"); }
+        background: url("../img/watch_vid.svg");
+        background-repeat: no-repeat;
+        background-position: 50% 55%;
+        background-size: 500% 500%; }
       .menu__option.go_right {
-        background: url("../img/go_right.svg") #8ebde6; }
+        background: url("../img/go_right.svg") #dad6b2; }
       .menu__option:hover {
         background-color: #172a88; }
       .menu__option:active {
@@ -3358,7 +3456,7 @@ body {
       position: fixed;
       right: 0;
       height: 100vh;
-      background: #8ebde6; }
+      background: #dad6b2; }
       .menu__background--credit {
         position: absolute;
         display: block;
@@ -3410,23 +3508,26 @@ body {
         background-size: contain;
         height: 100vh;
         width: 40vw; }
+        /*
       .intro__logo--deco {
         display: none; }
+        */
     .intro__title {
       position: absolute;
       z-index: 20;
       left: 8vw;
       top: 34vh;
       display: block;
-      background: #172a88;
+      background: #942323;
+      border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 5px 5px 5px 12px;
+      padding: 5px 12px 5px 12px;
       font-size: 16px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 1px;
       line-height: 28px;
-      transform: skewY(-5deg); }
+      transform: rotateZ(-5deg); }
     .intro__cont {
       position: absolute;
       top: 50vh;
@@ -3544,7 +3645,7 @@ body {
         left: -2vw;
         height: 190px;
         width: 50vw;
-        background: #8ebde6; }
+        background: #dad6b2; }
     .dept__decoration {
       display: none; }
   .event {
@@ -3648,7 +3749,7 @@ body {
         left: -2vw;
         height: 190px;
         width: 50vw;
-        background: #8ebde6; }
+        background: #dad6b2; }
     .event__decoration {
       display: none; }
   .schedule {
@@ -3754,7 +3855,7 @@ body {
             right: 0;
             height: 70%;
             width: 5px;
-            background: #8ebde6; }
+            background: #dad6b2; }
         .schedule__cont--item--time {
           position: absolute;
           display: inline-flex;
@@ -3850,7 +3951,7 @@ body {
             right: 0;
             height: 70%;
             width: 5px;
-            background: #8ebde6; }
+            background: #dad6b2; }
         .schedule__cont--list--time {
           position: absolute;
           display: inline-flex;
@@ -3901,7 +4002,7 @@ body {
               margin-right: 10px;
               height: 2px;
               width: 10%;
-              background: #8ebde6; }
+              background: #dad6b2; }
         .schedule__cont--list--more {
           position: relative;
           display: block;
@@ -3919,7 +4020,7 @@ body {
       .schedule__cont--background {
         position: absolute;
         z-index: -1;
-        background: #8ebde6;
+        background: #dad6b2;
         top: -20px;
         height: 100%;
         width: 100%;
@@ -4057,7 +4158,7 @@ body {
     .about__background {
       position: absolute;
       z-index: -1;
-      background: #8ebde6;
+      background: #dad6b2;
       top: -60px;
       height: calc(100% - 50px);
       width: 100%;
@@ -4191,7 +4292,7 @@ body {
       .menu__cont span {
         padding-right: 50px;
         padding-left: 15px;
-        background: #8ebde6; }
+        background: #dad6b2; }
       .menu__cont p {
         display: inline-block; }
         .menu__cont p::after {
@@ -4225,7 +4326,8 @@ body {
       z-index: 0;
       top: 15px;
       right: 15px;
-      background: url("../img/burger.svg") #8ebde6;
+      border-radius: 100%;
+      background: url("../img/burger.svg") #dad6b2;
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain;
@@ -4242,14 +4344,17 @@ body {
       height: 50px;
       width: 50px; }
       .menu__option.video {
-        background: url("../img/watch_vid.svg"); }
+        background: url("../img/watch_vid.svg");
+        background-repeat: no-repeat;
+        background-position: 50% 55%;
+        background-size: 540% 540%; }
       .menu__option.go_right {
-        background: url("../img/go_right.svg") #8ebde6; }
+        background: url("../img/go_right.svg") #dad6b2; }
     .menu__background {
       position: fixed;
       right: 0;
       height: 100vh;
-      background: #8ebde6; }
+      background: #dad6b2; }
       .menu__background--credit {
         position: absolute;
         display: block;
@@ -4288,37 +4393,56 @@ body {
       position: absolute;
       z-index: 10;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      left: 0;
+      left: -2vw;
       top: 3vh;
       height: 57vh;
       width: 100vw; }
-      .intro__logo--pic {
-        position: absolute;
-        background: url("../img/logo_2.svg");
-        background-position: center center;
+      .intro__logo--top {
+        flex: 1;
+        background: url("../img/wheel_top.svg");
+        background-position: left 20%;
+        margin-left: -20%;
         background-repeat: no-repeat;
-        background-size: contain;
+        background-size: 50%;
         width: 100%;
         height: 100%; }
-      .intro__logo--deco {
-        display: none; }
+      .intro__logo--pic {
+        position: absolute;
+        flex: 2;
+        background: url("../img/logo.svg");
+        background-position: center 40%;
+        background-repeat: no-repeat;
+        background-size: 120%;
+        width: 100%;
+        height: 100%; }
+      .intro__logo--bottom {
+        flex: 1;
+        background: url("../img/wheel_bottom.svg");
+        background-position: right center;
+        margin-right: -30%;
+        background-repeat: no-repeat;
+        background-size: 50%;
+        width: 100%;
+        height: 100%; }
     .intro__title {
       position: absolute;
       z-index: 20;
-      left: 0;
+      left: 3vw;
       top: 57vh;
       display: inline-block;
-      background: #172a88;
+      background: #942323;
+      border-radius: 50px;
       text-align: center;
       color: white;
-      padding: 10px 10px 10px 18px;
+      padding: 10px 18px 10px 18px;
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 500;
       letter-spacing: 1px;
       line-height: 28px;
-      transform: skewY(-5deg); }
+      transform: rotateZ(-5deg); }
     .intro__cont {
       position: absolute;
       z-index: 30;
@@ -4351,7 +4475,7 @@ body {
         animation-name: up_down;
         animation-duration: 2s;
         animation-iteration-count: infinite; }
-    .intro__background {
+    .intro__background, .menu__main_menu {
       display: none; }
   .dept {
     position: relative;
@@ -4492,7 +4616,7 @@ body {
         left: 0vw;
         height: 100%;
         width: 100vw;
-        background: #8ebde6;
+        background: #dad6b2;
         transform: skewY(-5deg); }
     .dept__decoration {
       position: absolute;
@@ -4656,7 +4780,7 @@ body {
         left: 0vw;
         height: 100%;
         width: 100vw;
-        background: #8ebde6;
+        background: #dad6b2;
         transform: skewY(-5deg); }
     .event__decoration {
       position: absolute;
@@ -4772,7 +4896,7 @@ body {
             right: 0;
             height: 70%;
             width: 5px;
-            background: #8ebde6; }
+            background: #dad6b2; }
         .schedule__cont--item--time {
           position: absolute;
           display: inline-flex;
@@ -4868,7 +4992,7 @@ body {
             right: 0;
             height: 70%;
             width: 5px;
-            background: #8ebde6; }
+            background: #dad6b2; }
         .schedule__cont--list--time {
           position: absolute;
           display: inline-flex;
@@ -4919,7 +5043,7 @@ body {
               margin-right: 10px;
               height: 2px;
               width: 10%;
-              background: #8ebde6; }
+              background: #dad6b2; }
         .schedule__cont--list--more {
           position: relative;
           display: block;
@@ -4937,7 +5061,7 @@ body {
       .schedule__cont--background {
         position: absolute;
         z-index: -1;
-        background: #8ebde6;
+        background: #dad6b2;
         top: -50px;
         height: 100%;
         width: 100%;
@@ -5083,7 +5207,7 @@ body {
     .about__background {
       position: absolute;
       z-index: -1;
-      background: #8ebde6;
+      background: #dad6b2;
       top: -50px;
       height: 100%;
       width: 100%;
