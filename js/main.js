@@ -14,6 +14,16 @@ $(document).ready(function(){
         menu ("close");
     })
 
+    $("#parent").click(function(){
+        $(".menu").removeClass("off");
+        $(".parent").removeClass("off").addClass("on");
+        $("body").addClass("no_scroll");
+    });
+
+    $(".parent__close").click(function(){
+        page ("parentClose");
+    })
+
     $(".goto_page").click(function(){  
         var page_no = this.className.replace( "goto_page goto_" ,"" ).replace( "now", "" );        
         $(window).scrollTo( "#page_" + page_no , 300);
@@ -28,7 +38,6 @@ $(document).ready(function(){
     $(".menu__totop").click(function(){
         $(window).scrollTo( "#page_1", 300);        
     })
-    
 
     // Waypoint Listeners
 
@@ -168,6 +177,14 @@ $(document).ready(function(){
         }
     }
 
+    function page ( command ) {
+        if ( command == 'parentClose' ) {
+            $(".menu").addClass("off");
+            $(".parent").removeClass("on").addClass("off");
+            $("body").removeClass("no_scroll");
+        }
+    }
+
     function nowPage ( num ) {
         $(".goto_"+ num ).siblings().removeClass("now");
         $(".goto_" +num ).addClass("now");
@@ -180,7 +197,7 @@ $(document).ready(function(){
         else
             $(".intro__scroll").fadeIn(500);
     }
-    
+     
     function updateSlideNo ( type ) {
         setTimeout (function() {
             var slide_no = $("."+type+"_.swiper-slide-active").data("swiper-slide-index") + 1 ;
