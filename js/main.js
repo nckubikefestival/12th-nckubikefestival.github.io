@@ -14,9 +14,13 @@ $(document).ready(function(){
         menu ("close");
     })
 
+    // main_menu listener
+
     $("#parent").click(function(){
         $(".menu").removeClass("off");
         $(".parent").removeClass("off").addClass("on");
+        $(".parent_page_btn").removeClass("off").addClass("on");
+        $(".parent_subpage").removeClass("on").addClass("off");
         $("body").addClass("no_scroll");
     });
 
@@ -24,6 +28,34 @@ $(document).ready(function(){
         page ("parentClose");
     })
 
+    // parent_page listener
+
+    $("#parent_exam").click(function(){
+        $(".parent_page_btn").removeClass("on").addClass("off");
+        $(".parent_subpage").removeClass("off").addClass("on");
+    });
+
+    $("#parent_rule").click(function(){
+        $(".parent_page_btn").removeClass("on").addClass("off");
+        $(".parent_subpage").removeClass("on").addClass("off");
+    });
+
+    $("#parent_relationship").click(function(){
+        $(".parent_page_btn").removeClass("on").addClass("off");
+        $(".parent_subpage").removeClass("on").addClass("off");
+    });
+
+    $("#parent_kidHealth").click(function(){
+        $(".parent_page_btn").removeClass("on").addClass("off");
+        $(".parent_subpage").removeClass("on").addClass("off");
+    });
+
+    $("#parent_trend").click(function(){
+        $(".parent_page_btn").removeClass("on").addClass("off");
+        $(".parent_subpage").removeClass("on").addClass("off");
+    });
+
+    // side bar listener
     $(".goto_page").click(function(){  
         var page_no = this.className.replace( "goto_page goto_" ,"" ).replace( "now", "" );        
         $(window).scrollTo( "#page_" + page_no , 300);
