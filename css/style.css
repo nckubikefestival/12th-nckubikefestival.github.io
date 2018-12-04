@@ -455,9 +455,9 @@ body {
       background-size: 150%;
     }
     #parent {
-      background: url("../img/menu_parent.svg");
+      background: url("../img/menu_parent.svg") no-repeat;
       background-position: 50% 50%;
-      background-size: 150%;
+      background-size: 55%;
     }
     #abstract {
       background: url("../img/menu_abstract.svg");
@@ -583,27 +583,48 @@ body {
     .intro__num {
       z-index: 10;
     }
-    .intro__num.num1 {
+    .intro__num.num1  {
       position: absolute;
       width: 30%;
       height: 400px;
-      left: 8vw;
-      margin-top: 30vh;
-      background: url("../img/six.svg");
-      background-position: -180px -120px;
+      left: 0vw;
+      margin-top: 20vh;
+      background: none;
       background-size: 100% 100%;
-      background-repeat: no-repeat;
+      background-repeat: no-repeat !important;
     }
     .intro__num.num2 {
       position: absolute;
       width: 30%;
       height: 400px;
       left: 8vw;
-      margin-top: 30vh;
-      background: url("../img/nine.svg");
-      background-position: -20px -92px;
+      margin-top: 20vh;
+      background: none;
       background-size: 100% 100%;
-      background-repeat: no-repeat;
+      background-repeat: no-repeat !important;
+    }
+    .menu__activity__num {
+      z-index: 10;
+    }
+    .menu__activity__num.num1 {
+      position: absolute;
+      width: 70%;
+      height: 400px;
+      left: 1.2vw;
+      margin-top: 30vh;
+      background: none;
+      background-size: 100% 100%;
+      background-repeat: no-repeat !important;
+    }
+    .menu__activity__num.num2 {
+      position: absolute;
+      width: 70%;
+      height: 400px;
+      left: 3.2vw;
+      margin-top: 30vh;
+      background: none;
+      background-size: 100% 100%;
+      background-repeat: no-repeat !important;
     }
     .intro__dot {
       position: absolute;
@@ -947,6 +968,9 @@ body {
     left: 0;
     right: 0;
     margin: auto; }
+    h1.larger_text {
+      padding-top: 3em;
+      font-size: 3em; }
     .schedule__title {
       position: relative;
       z-index: 20;

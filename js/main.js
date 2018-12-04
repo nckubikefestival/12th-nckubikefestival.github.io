@@ -54,7 +54,7 @@ $(document).ready(function(){
         $(".parent_page_btn").removeClass("on").addClass("off");
         $(".parent_subpage").removeClass("on").addClass("off");
     });
-
+    /*
     // side bar listener
     $(".goto_page").click(function(){  
         var page_no = this.className.replace( "goto_page goto_" ,"" ).replace( "now", "" );        
@@ -70,7 +70,6 @@ $(document).ready(function(){
     $(".menu__totop").click(function(){
         $(window).scrollTo( "#page_1", 300);        
     })
-
     // Waypoint Listeners
 
     var waypoint_p1_top = new Waypoint({
@@ -83,43 +82,57 @@ $(document).ready(function(){
 
     var waypoint_p2_top = new Waypoint({
         element: document.getElementById('page_2_top'),
-        handler: function(direction) { nowPage(2); },
+        handler: function(direction) { 
+            nowPage(2); 
+        },
         offset: '20%'
     })
 
     var waypoint_p2_bottom = new Waypoint({
         element: document.getElementById('page_2_bottom'),
-        handler: function(direction) { nowPage(2); },
+        handler: function(direction) { 
+            nowPage(2); 
+        },
         offset: '20%'  
     })
 
     var waypoint_p3_top = new Waypoint({
         element: document.getElementById('page_3_top'),
-        handler: function(direction) { nowPage(3); },
+        handler: function(direction) { 
+            nowPage(3); 
+        },
         offset: '20%'  
     })
 
     var waypoint_p3_bottom = new Waypoint({
         element: document.getElementById('page_3_bottom'),
-        handler: function(direction) { nowPage(3); },
+        handler: function(direction) { 
+            nowPage(3);
+        },
         offset: '20%'  
     })
 
     var waypoint_p4_top = new Waypoint({
         element: document.getElementById('page_4_top'),
-        handler: function(direction) { nowPage(4); },
+        handler: function(direction) { 
+            nowPage(4); 
+        },
         offset: '20%'  
     })
 
     var waypoint_p4_bottom = new Waypoint({
         element: document.getElementById('page_4_bottom'),
-        handler: function(direction) { nowPage(4); },
+        handler: function(direction) { 
+            nowPage(4); 
+        },
         offset: 'bottom-in-view'        
     })
 
     var waypoint_p5_top = new Waypoint({
         element: document.getElementById('page_5_top'),
-        handler: function(direction) { nowPage(5); },
+        handler: function(direction) { 
+            nowPage(5); 
+        },
         offset: '50%'
     })
 
@@ -216,7 +229,7 @@ $(document).ready(function(){
             $("body").removeClass("no_scroll");
         }
     }
-
+    
     function nowPage ( num ) {
         $(".goto_"+ num ).siblings().removeClass("now");
         $(".goto_" +num ).addClass("now");
@@ -229,6 +242,7 @@ $(document).ready(function(){
         else
             $(".intro__scroll").fadeIn(500);
     }
+    
      
     function updateSlideNo ( type ) {
         setTimeout (function() {
@@ -244,5 +258,32 @@ $(document).ready(function(){
                 $("."+type+"__description--no").text( slide_no );
         }, 10);
     }
+    */
 
+    // activity date
+    function getTimes() {
+        let startDate = new Date()
+        let endDateExam = new Date('2019/1/26 00:00')
+        let endDateActivity = new Date('2019/3/2 00:00')
+        let spantimeExam = (endDateExam - startDate) / 1000
+        let spantimeActivity = (endDateActivity - startDate) / 1000
+        const dayExam = Math.floor(spantimeExam / (24 * 3600))
+        const dayActivity = Math.floor(spantimeActivity / (24 * 3600))
+        if (spantimeExam > 0) {
+            $('.intro__num.num1').css('background', "url('./img/number_" + Math.floor(dayExam / 10) +  ".svg')")
+            $('.intro__num.num2').css('background', "url('./img/number_" + dayExam % 10 +  ".svg')")
+        } else { // 避免倒數變成負的
+            $('.intro__num.num1').css('background', url(`./img/number_0.svg`))
+            $('.intro__num.num2').css('background', url(`./img/number_0.svg`))
+        }
+        if (spantimeActivity > 0) {
+            $('.menu__activity__num.num1').css('background', "url('./img/number_" + Math.floor(dayActivity / 10) +  ".svg')")
+            $('.menu__activity__num.num2').css('background', "url('./img/number_" + dayActivity % 10 +  ".svg')")
+        } else { // 避免倒數變成負的
+            $('.menu__activity__num.num1').css('background', url(`./img/number_0.svg`))
+            $('.menu__activity__num.num2').css('background', url(`./img/number_0.svg`))
+        }
+
+    }
+    setInterval(getTimes, 0)
 });
