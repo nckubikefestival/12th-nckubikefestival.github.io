@@ -13,6 +13,17 @@
   100% {
     transform: rotate(360deg); } }
 
+    
+#wrap{
+    overflow: hidden;
+    width: 100%;
+}
+#main{
+    height: 1080px;
+    top: 0;
+    position: relative;
+}
+
 body {
   font-family: 'Noto Sans', helvetica, Microsoft JhengHei, serif, sans-serif, monospace;
   overflow-x: hidden; }
@@ -104,13 +115,36 @@ body {
         width: 100vh; }
       .menu.on .menu__background {
         width: 100vw; }
+        #scroll__road {
+          position: fixed;
+          margin-left: 52vw;
+          height: 100%;
+          width: 25vw;
+          z-index: 20;
+          background: url("../img/parent_scroll.svg");
+          background-position: center 5vh;
+          background-repeat: no-repeat;
+          background-size: 110%;
+        }
+        #scroll__bike {
+          position: fixed;
+          margin-left: 52vw;
+          height: 100%;
+          width: 25vw;
+          z-index: 20;
+          background: url("../img/parent_scroll_bike.svg");
+          background-position: -3vw 10vh;
+          background-repeat: no-repeat;
+          background-size: 110%;
+        }
+        
   .parent.off {
     display: none;
   }
   .parent.on {
-    position: relative;
+    position: fixed;
     background: white;
-    z-index: 20;
+    z-index: 500;
     top: 0;
     left: 0;
     display: flex;
@@ -118,38 +152,59 @@ body {
     height: 100vh;
     width: 100vw;
     overflow-y: scroll; }
-    #scroll__road {
-      position: fixed;
-      margin-left: 52vw;
-      height: 100%;
-      width: 25vw;
-      z-index: 20;
-      background: url("../img/parent_scroll.svg");
-      background-position: center 5vh;
-      background-repeat: no-repeat;
-      background-size: 110%;
-    }
-    #scroll__bike {
-      position: fixed;
-      margin-left: 52vw;
-      height: 100%;
-      width: 25vw;
-      z-index: 20;
-      background: url("../img/parent_scroll_bike.svg");
-      background-position: -3vw 10vh;
-      background-repeat: no-repeat;
-      background-size: 110%;
-    }
     #parent_title {
-      position: fixed;
+      position: absolute;
       top: 3%;
       left: 6%;
-      z-index: 20;
-      width: 100vw;
-      height: 60vh;
+      z-index: 505;
+      width: 24vw;
+      height: 20vh;
       background: url("../img/parent_title.svg");
       background-repeat: no-repeat;
-      background-size: 17%;
+      background-size: 85%;
+    }
+
+    #parent_article_list {
+      position: absolute;
+      top: 18%;
+      left: 72%;
+      z-index: 505;
+      width: 18vw;
+      height: 75vh;
+    }
+    #parent_article_list ul {
+      list-style: none;
+    }
+    #parent_article_list ul li {
+      margin: 20px;
+      font-size: 1.5em;
+      cursor: pointer;
+    }
+    #parent_article_title {
+      position: fixed;
+      top: 23%;
+      left: 10%;
+      z-index: 510;
+      width: 45vw;
+      height: 30px;
+    }
+    #parent_article_content {
+      position: fixed;
+      top: 33%;
+      left: 10%;
+      z-index: 510;
+      width: 45vw;
+      height: 60vh;
+      padding: 20px;
+      overflow-y: auto;
+    }
+    #parent_article_time {
+      position: fixed;
+      top: 28%;
+      left: 10%;
+      z-index: 510;
+      width: 45vw;
+      height: 30px;
     }
     #parent_bg {
       position: fixed;
@@ -157,7 +212,7 @@ body {
       margin-left: 3%;
       width: 65vw;
       height: 60vh;
-      z-index: 20;
+      z-index: 505;
       background: url("../img/parent_bg.svg");
       background-repeat: no-repeat;
       background-size: 90%;
@@ -173,7 +228,7 @@ body {
       right: 0px;
       width: 35vw;
       height: 70%;
-      z-index: 20;
+      z-index: 500;
     }
     .parent_page_btn.on input[type="button"] {
       flex: 1;
@@ -228,13 +283,12 @@ body {
       right: 0px;
       width: 35vw;
       height: 100%;
-      z-index: 20; }
+      z-index: 500; }
       .subpage_title {
         flex: 1;
         width: 20vw;
         height: 10vh;
-        background: url("../img/parent_exam.svg");
-        background-repeat: no-repeat;
+        background: none;
         background-size: 100%;
       }
       .subpage_content {
@@ -242,7 +296,7 @@ body {
       }
     .parent__close {
       position: fixed;
-      z-index: 50;
+      z-index: 500;
       top: 30px;
       right: 30px;
       background: url("../img/close.svg");
@@ -257,9 +311,29 @@ body {
         filter: brightness(20%); }
       .parent__close:active {
         filter: brightness(90%); }
+    .parent__return.off {
+      display: none;
+    }
+    .parent__return.on {
+      position: fixed;
+      z-index: 500;
+      top: 30px;
+      right: 90px;
+      background: url("../img/return.svg");
+      background-position: 55% 60%;
+      background-repeat: no-repeat;
+      background-size: 800%;
+      height: 50px;
+      width: 50px;
+      cursor: pointer;
+      transition: .3s ease; }
+      .parent__return:hover {
+        filter: brightness(20%); }
+      .parent__return:active {
+        filter: brightness(90%); }
     .parent__background {
       position: absolute;
-      z-index: -1;
+      z-index: 505;
       top: 0;
       left: -35vw;
       background: #dad6b2;
@@ -709,7 +783,7 @@ body {
       z-index: 20;
       width: 100vw;
       height: 78px;
-      margin-top: 15vh;
+      margin-top: 5vh;
       text-align: center;
       display: inline-block;
       background: url("../img/square.svg");
@@ -750,8 +824,8 @@ body {
         width: 100px; }
     .dept__class {
       position: relative;
-      margin-top: 10vh;
-      margin-bottom: 20vh;
+      margin-top: 5vh;
+      margin-bottom: 10vh;
       left: 18vw;
       height: 50vh;
       width: 30vw;
@@ -760,7 +834,7 @@ body {
       justify-content: center; }
     .dept__description {
       position: absolute;
-      top: 35vh;
+      top: 25vh;
       left: 50vw; }
       .dept__description--no {
         position: relative;
@@ -780,7 +854,7 @@ body {
         line-height: 30px;
         display: inline-block;
         padding: 5px 8px;
-        margin-top: 16px;
+        margin-top: 32px;
         margin-bottom: 12px;
         color: #3e3a39;
         background: white; }
@@ -812,7 +886,7 @@ body {
       .dept__description--background {
         position: absolute;
         z-index: -1;
-        top: 2vh;
+        top: 0vh;
         left: 30px;
         height: 100%;
         width: 100%;
@@ -822,7 +896,7 @@ body {
     .dept__decoration {
       position: absolute;
       z-index: -1;
-      top: 25vh;
+      top: 15vh;
       left: 12vw;
       height: 60vh;
       width: 76vw;
@@ -841,7 +915,7 @@ body {
       z-index: 20;
       width: 100vw;
       height: 78px;
-      margin-top: 10vh;
+      margin-top: 5vh;
       text-align: center;
       display: inline-block;
       background: url("../img/square.svg");
@@ -892,7 +966,7 @@ body {
       justify-content: center; }
     .event__description {
       position: absolute;
-      top: 35vh;
+      top: 25vh;
       left: 50vw; }
       .event__description--no {
         position: relative;
@@ -954,7 +1028,7 @@ body {
     .event__decoration {
       position: absolute;
       z-index: -1;
-      top: 25vh;
+      top: 15vh;
       left: 18vw;
       height: 60vh;
       width: 64vw;
@@ -976,7 +1050,7 @@ body {
       z-index: 20;
       width: 100vw;
       height: 78px;
-      margin-top: 10vh;
+      margin-top: 5vh;
       text-align: center;
       display: inline-block;
       background: url("../img/square.svg");
@@ -1029,10 +1103,11 @@ body {
         display: inline; }
     .schedule__cont {
       position: relative;
-      margin-top: 15vh;
+      margin-top: -16vh;
+      padding-top: 16vh;
       margin-bottom: 50px;
       width: 100vw;
-      height: 700px;
+      height: 74vh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -1217,8 +1292,7 @@ body {
         top: -50px;
         height: 100%;
         width: 100%;
-        padding: 50px 0px;
-        transform: skewY(-5deg); }
+        padding: 50px 0px; }
   .register {
     position: relative;
     left: 0;
@@ -1838,7 +1912,7 @@ body {
       justify-content: center; }
     .dept__description {
       position: absolute;
-      top: 35vh;
+      top: 40vh;
       left: 58vw; }
       .dept__description--no {
         position: relative;

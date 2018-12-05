@@ -1,7 +1,101 @@
 $(document).ready(function(){
 
-    // Menu Listeners
+    // initialize firebase setting.
+    const config = {
+        apiKey: "AIzaSyC23x9CwP2TuVmXh90R3Xg55AcfL6h_jII",
+        authDomain: "ncku-bikefestival-12th.firebaseapp.com",
+        databaseURL: "https://ncku-bikefestival-12th.firebaseio.com",
+        projectId: "ncku-bikefestival-12th",
+        storageBucket: "ncku-bikefestival-12th.appspot.com",
+        messagingSenderId: "309069279460"
+    }
+    firebase.initializeApp(config)
+    const db = firebase.firestore()
+    // Disable deprecated features
+    db.settings({
+        timestampsInSnapshots: true
+    })
+    // articles fetch
+    const articles = {
+        exam: [],
+        health: [],
+        institution: [],
+        communication: [],
+        future: []
+    }
+    db.collection("articles").get()
+    .then(function (result) {
+        for (doc of result.docs) {
+            const data = doc.data()
+            if (data.Type) {
+                articles[data.Type].push(data)
+            }
+        }
+        // order the array by timestamp
+        for (iter of Object.keys(articles)) {
+            articles[iter].sort((a, b) => a.Timestamp - b.Timestamp)
+        }
+        // console.log(result.docs[0].data())
+        console.log(articles)
+    })
+    let currentParentTab = ''
 
+  
+
+    // full screen scroll
+    const wrap = document.getElementById("wrap");
+    const main = document.getElementById("main");
+    const hei = document.body.clientHeight;
+    wrap.style.height = hei + "px";
+    let obj = document.getElementsByTagName("div");
+    for(let i = 0; i < obj.length; i++) {
+        if(obj[i].className.includes(' page')) {
+            obj[i].style.height = hei + "px";
+        }
+    }
+    let startTime = 0
+    let endTime = 0
+    let now = 0
+    if ((navigator.userAgent.toLowerCase().indexOf("firefox") != -1)){   
+        document.addEventListener("DOMMouseScroll", scrollFun, false);        
+    }  
+    else if (document.addEventListener) {  
+        document.addEventListener("mousewheel", scrollFun, false);  
+    }  
+    else if (document.attachEvent) {  
+        document.attachEvent("onmousewheel", scrollFun);   
+    }  
+    else{  
+        document.onmousewheel = scrollFun;  
+    }  
+
+    function scrollFun(event) {
+        startTime = new Date().getTime();
+        var delta = event.detail || (-event.wheelDelta);  
+        if ((endTime - startTime) < -1000) {
+            if(delta > 0 && parseInt(main.offsetTop) > -(hei * 5)) {
+                now = now - hei;
+                console.log(now)
+                toPage(now);
+            }
+            if(delta < 0 && parseInt(main.offsetTop) < 0) {
+                now = now + hei;
+                toPage(now);
+            }
+            endTime = new Date().getTime();  
+        }
+        else{  
+            event.preventDefault();    
+        }    
+    }
+
+    function toPage(now){        
+        $("#main").animate({top:(now+'px')}, 1000);
+        console.log(now)
+    }
+
+    // Menu Listeners
+    /*
     $(".menu.off").find(".menu__wheel--self").click(function(){
         menu ("open");
     })
@@ -13,6 +107,7 @@ $(document).ready(function(){
     $(".menu__close").click(function(){
         menu ("close");
     })
+    */
 
     // main_menu listener
 
@@ -21,11 +116,31 @@ $(document).ready(function(){
         $(".parent").removeClass("off").addClass("on");
         $(".parent_page_btn").removeClass("off").addClass("on");
         $(".parent_subpage").removeClass("on").addClass("off");
+        $('.subpage_title').css('background', "none no-repeat")
         $("body").addClass("no_scroll");
+        $('.parent_page_btn').css('z-index', '505')
+        $('#parent_article_list').css('z-index', '500')
     });
 
     $(".parent__close").click(function(){
         page ("parentClose");
+        $(".parent__return").removeClass("on").addClass("off");
+        $('#parent_article_title').html('')
+        $('#parent_article_content').html('')
+        $('#parent_article_time').text('')
+        $('#parent_article_list ul').html('')
+    })
+    $(".parent__return").click(function(){
+        $(".parent_page_btn").removeClass("off").addClass("on");
+        $(".parent_subpage").removeClass("off").addClass("on");
+        $('.parent_page_btn').css('z-index', '505')
+        $('#parent_article_list').css('z-index', '500')
+        $('.subpage_title').css('background', "none")
+        $(".parent__return").removeClass("on").addClass("off");
+        $('#parent_article_title').html('')
+        $('#parent_article_content').html('')
+        $('#parent_article_time').text('')
+        $('#parent_article_list ul').html('')
     })
 
     // parent_page listener
@@ -33,28 +148,120 @@ $(document).ready(function(){
     $("#parent_exam").click(function(){
         $(".parent_page_btn").removeClass("on").addClass("off");
         $(".parent_subpage").removeClass("off").addClass("on");
-    });
+        $('.parent_page_btn').css('z-index', '500')
+        $('#parent_article_list').css('z-index', '505')
+        $('.subpage_title').css('background', "url('./img/parent_exam.svg') no-repeat")
+        $(".parent__return").removeClass("off").addClass("on");
+        currentParentTab = 'exam'
+        refreshParentList()
+    })
 
     $("#parent_rule").click(function(){
         $(".parent_page_btn").removeClass("on").addClass("off");
-        $(".parent_subpage").removeClass("on").addClass("off");
+        $(".parent_subpage").removeClass("off").addClass("on");
+        $('.parent_page_btn').css('z-index', '500')
+        $('#parent_article_list').css('z-index', '505')
+        $('.subpage_title').css('background', "url('./img/parent_rule.svg') no-repeat")
+        $(".parent__return").removeClass("off").addClass("on");
+        currentParentTab = 'institution'
+        refreshParentList()
     });
 
     $("#parent_relationship").click(function(){
         $(".parent_page_btn").removeClass("on").addClass("off");
-        $(".parent_subpage").removeClass("on").addClass("off");
+        $(".parent_subpage").removeClass("off").addClass("on");
+        $('.parent_page_btn').css('z-index', '500')
+        $('#parent_article_list').css('z-index', '505')
+        $('.subpage_title').css('background', "url('./img/parent_relationship.svg') no-repeat")
+        $(".parent__return").removeClass("off").addClass("on");
+        currentParentTab = 'communication'
+        refreshParentList()
     });
 
     $("#parent_kidHealth").click(function(){
         $(".parent_page_btn").removeClass("on").addClass("off");
-        $(".parent_subpage").removeClass("on").addClass("off");
+        $(".parent_subpage").removeClass("off").addClass("on");
+        $('.parent_page_btn').css('z-index', '500')
+        $('#parent_article_list').css('z-index', '505')
+        $('.subpage_title').css('background', "url('./img/parent_kidHealth.svg') no-repeat")
+        $(".parent__return").removeClass("off").addClass("on");
+        currentParentTab = 'health'
+        refreshParentList()
     });
 
     $("#parent_trend").click(function(){
         $(".parent_page_btn").removeClass("on").addClass("off");
-        $(".parent_subpage").removeClass("on").addClass("off");
+        $(".parent_subpage").removeClass("off").addClass("on");
+        $('.parent_page_btn').css('z-index', '500')
+        $('#parent_article_list').css('z-index', '505')
+        $('.subpage_title').css('background', "url('./img/parent_trend.svg') no-repeat")
+        $(".parent__return").removeClass("off").addClass("on");
+        currentParentTab = 'future'
+        refreshParentList()
     });
-    /*
+
+
+    // Swiper Initialize
+
+    var dept_swiper = new Swiper('#dept__class--list', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        shortSwipes: false,
+        longSwipes: false,
+        followFinger: false,
+        allowTouchMove: false,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: false,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+
+    var event_swiper = new Swiper('#event__class--list', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        shortSwipes: false,
+        longSwipes: false,
+        followFinger: false,
+        allowTouchMove: false,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: false,
+        },
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+    });
+
+    $("#dept__class--list").find(".swiper-button-next, .swiper-button-prev, .swiper-pagination").click(function(){
+        updateSlideNo("dept");
+    })
+
+    $("#event__class--list").find(".swiper-button-next, .swiper-button-prev, .swiper-pagination").click(function(){
+        updateSlideNo("event");        
+    })
+
+    function updateSlideNo ( type ) {
+        setTimeout (function() {
+            var slide_no = $("."+type+"_.swiper-slide-active").data("swiper-slide-index") + 1 ;
+            $("."+type+"__description--cont--text."+type+"_"+slide_no).siblings().removeClass("now");
+            $("."+type+"__description--cont--text."+type+"_"+slide_no).addClass("now");
+            // $("."+type+"__description--cont."+type+"_"+slide_no).siblings().removeClass("now");
+            // $("."+type+"__description--cont."+type+"_"+slide_no).addClass("now");
+            $("."+type+"__description--title").text( $("."+type+"_.swiper-slide-active").text() );
+            if ( slide_no < 10 ) 
+                $("."+type+"__description--no").text( "0"+ slide_no );
+            else
+                $("."+type+"__description--no").text( slide_no );
+        }, 10);
+    }
+    /*  
     // side bar listener
     $(".goto_page").click(function(){  
         var page_no = this.className.replace( "goto_page goto_" ,"" ).replace( "now", "" );        
@@ -139,13 +346,6 @@ $(document).ready(function(){
     
     // Other Listeners
 
-    $("#dept__class--list").find(".swiper-button-next, .swiper-button-prev, .swiper-pagination").click(function(){
-        updateSlideNo("dept");
-    })
-
-    $("#event__class--list").find(".swiper-button-next, .swiper-button-prev, .swiper-pagination").click(function(){
-        updateSlideNo("event");        
-    })
     
     $(".register__wheel--self").click(function(){
         window.open( "https://docs.google.com/forms/d/e/1FAIpQLSffgri9t91F6dgQVp0QRv3iii_ouQy8bMSbCLLCGOcGPZ9dDg/viewform" );
@@ -166,48 +366,6 @@ $(document).ready(function(){
             $( this ).removeClass("off").addClass("on");
         }
     })
-
-
-
-
-    // Swiper Initialize
-
-    var dept_swiper = new Swiper('#dept__class--list', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        shortSwipes: false,
-        longSwipes: false,
-        followFinger: false,
-        allowTouchMove: false,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: false,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
-
-    var event_swiper = new Swiper('#event__class--list', {
-        slidesPerView: 1,
-        spaceBetween: 30,
-        loop: true,
-        shortSwipes: false,
-        longSwipes: false,
-        followFinger: false,
-        allowTouchMove: false,
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: false,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
-
 
     // Functions
 
@@ -260,6 +418,33 @@ $(document).ready(function(){
     }
     */
 
+   function refreshParentList() {
+    if (articles[currentParentTab].length > 0) {
+        // display first articles
+        $('#parent_article_title').html(articles[currentParentTab][0].Title)
+        $('#parent_article_content').html(articles[currentParentTab][0].Content)
+        $('#parent_article_time').text(articles[currentParentTab][0].Timestamp.toDate().toDateString())
+        // list the title of the articles
+        for (let [index, iter] of articles[currentParentTab].entries()) {
+            $('#parent_article_list ul').append(`<li data-key=${index}>${iter.Title}</li>`)
+        }
+    }
+    $('#parent_article_list ul li').click(function () {
+        let index = this.dataset.key
+        $('#parent_article_title').html(articles[currentParentTab][index].Title)
+        $('#parent_article_content').html(articles[currentParentTab][index].Content)
+        $('#parent_article_time').text(articles[currentParentTab][index].Timestamp.toDate().toDateString())
+    })
+}
+
+   function page ( command ) {
+        if ( command == 'parentClose' ) {
+            $(".menu").addClass("off");
+            $(".parent").removeClass("on").addClass("off");
+            $("body").removeClass("no_scroll");
+        }
+    }
+    
     // activity date
     function getTimes() {
         let startDate = new Date()
