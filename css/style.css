@@ -57,8 +57,8 @@ body {
           filter: brightness(90%); }
         .menu.off .menu__wheel--self:active {
           filter: brightness(20%); }
-        .menu.off .menu__wheel--self:hover {
-          animation-duration: 2s;
+        .menu.off .menu__wheel--self {
+          animation-duration: 4s;
           animation-name: roll;
           animation-iteration-count: infinite;
           animation-timing-function: linear;
@@ -220,11 +220,13 @@ body {
     }
     .parent_page_btn.on {
       position: absolute;
+      box-sizing: border-box;
       display: flex;
-      align-items: center;
+      align-items: left;
       justify-content: center;
       flex-direction: column;
       margin: 0 auto;
+      padding: 0 2vw;
       right: 0px;
       width: 35vw;
       height: 70%;
@@ -236,7 +238,11 @@ body {
       margin: 1vh;
       width: 20vw;
       height: 10vh;
-      border: 0px; }
+      border: 0px; 
+      opacity: 0;
+      transition: all .1s ease-in;}
+    .parent_page_btn.on input[type="button"]:hover {
+      transform: scale(1.1); }
     #parent_exam {
       background: url("../img/parent_exam.svg");
       background-position: center 40%;
@@ -512,6 +518,7 @@ body {
       .menu__btn {
         display: flex;
         padding: 20px;
+        border-radius: 20px;
         flex-direction: column; }
       .menu__btn input[type="button"]{
         cursor: pointer;
@@ -523,20 +530,24 @@ body {
         text-align: center;
         flex: 1;
         color: #942323; }
+      .menu__btn:hover {
+        background-color: #dad6b2; }
+        .menu__btn:active {
+        background-color: black; } 
     #news {
-      background: url("../img/menu_news.svg");
-      background-position: 60% 40%;
-      background-size: 150%;
+      background: url("../img/menu_news.svg") no-repeat;
+      background-position: 50% 50%;
+      background-size: 65%;
     }
     #parent {
       background: url("../img/menu_parent.svg") no-repeat;
       background-position: 50% 50%;
-      background-size: 55%;
+      background-size: 50%;
     }
     #abstract {
-      background: url("../img/menu_abstract.svg");
-      background-position: 65% 60%;
-      background-size: 150%;
+      background: url("../img/menu_abstract.svg") no-repeat;
+      background-position: 50% 50%;
+      background-size: 60%;
     }
     #history {
       background: url("../img/menu_history.svg");
@@ -1036,6 +1047,27 @@ body {
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain; }
+    .event__decoration--top {
+      position: absolute;
+      z-index: -1;
+      background: url("../img/wheel_top.svg");
+      left: 15%;
+      bottom: 60%;
+      background-repeat: no-repeat;
+      background-size: 120% 120%;
+      height: 250px;
+      width: 250px; }
+    .event__decoration--bottom {
+      position: absolute;
+      z-index: -1;
+      background: url("../img/wheel_bottom.svg");
+      right: 15%;
+      top: 48%;
+      background-repeat: no-repeat;
+      background-size: 120% 120%;
+      height: 250px;
+      width: 250px; }
+
   .schedule {
     position: relative;
     display: block;
@@ -1372,6 +1404,28 @@ body {
       background-position: center center;
       background-repeat: no-repeat;
       background-size: contain; }
+    .register__decoration--top {
+      position: absolute;
+      z-index: -1;
+      background: url("../img/wheel_top.svg");
+      left: 12%;
+      bottom: 55%;
+      background-repeat: no-repeat;
+      background-size: 120% 120%;
+      height: 250px;
+      width: 250px; }
+    .register__decoration--bottom {
+      position: absolute;
+      z-index: -1;
+      background: url("../img/wheel_bottom.svg");
+      right: 15%;
+      top: 48%;
+      background-repeat: no-repeat;
+      background-size: 120% 120%;
+      height: 250px;
+      width: 250px; }
+
+
   .about {
     position: relative;
     left: 0;
@@ -1483,11 +1537,10 @@ body {
       position: absolute;
       z-index: -1;
       background: #dad6b2;
-      top: -50px;
+      top: 0px;
       height: calc(100% - 150px);
       width: 100%;
-      padding: 50px 0px;
-      transform: skewY(-5deg); }
+      padding: 50px 0px; }
     .about__icon {
       position: absolute;
       margin: auto;
@@ -1779,7 +1832,7 @@ body {
       width: 50vw; }
       .intro__logo--pic {
         position: absolute;
-        background: url("../img/logo.svg");
+
         background-position: center center;
         background-repeat: no-repeat;
         background-size: contain;
@@ -5577,3 +5630,4 @@ body {
       letter-spacing: 1px;
       line-height: 28px;
       transform: skewY(-5deg); } }
+

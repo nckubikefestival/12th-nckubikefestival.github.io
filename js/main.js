@@ -43,55 +43,81 @@ $(document).ready(function(){
   
 
     // full screen scroll
-    const wrap = document.getElementById("wrap");
-    const main = document.getElementById("main");
-    const hei = document.body.clientHeight;
-    wrap.style.height = hei + "px";
-    let obj = document.getElementsByTagName("div");
+    const wrap = document.getElementById("wrap")
+    const main = document.getElementById("main")
+    const hei = document.body.clientHeight
+    const totalHeight = hei * 4 + 350
+    let position = [0, hei, hei * 2, hei * 3, hei * 4, hei * 4 + 350]
+    let currentPage = 0
+    wrap.style.height = hei + "px"
+    let obj = document.getElementsByTagName("div")
     for(let i = 0; i < obj.length; i++) {
         if(obj[i].className.includes(' page')) {
-            obj[i].style.height = hei + "px";
+            obj[i].style.height = hei + "px"
         }
     }
     let startTime = 0
     let endTime = 0
-    let now = 0
+    
     if ((navigator.userAgent.toLowerCase().indexOf("firefox") != -1)){   
-        document.addEventListener("DOMMouseScroll", scrollFun, false);        
-    }  
+        document.addEventListener("DOMMouseScroll", scrollFun, false)
+    } 
     else if (document.addEventListener) {  
-        document.addEventListener("mousewheel", scrollFun, false);  
+        document.addEventListener("mousewheel", scrollFun, false)
     }  
     else if (document.attachEvent) {  
-        document.attachEvent("onmousewheel", scrollFun);   
+        document.attachEvent("onmousewheel", scrollFun)
     }  
     else{  
-        document.onmousewheel = scrollFun;  
+        document.onmousewheel = scrollFun
     }  
 
     function scrollFun(event) {
-        startTime = new Date().getTime();
-        var delta = event.detail || (-event.wheelDelta);  
+        if ($('.parent')[0].className.includes('on')) {
+            return
+        }
+        startTime = new Date().getTime()
+        var delta = event.detail || (-event.wheelDelta)
         if ((endTime - startTime) < -1000) {
-            if(delta > 0 && parseInt(main.offsetTop) > -(hei * 5)) {
-                now = now - hei;
-                console.log(now)
-                toPage(now);
+            if(delta > 0 && parseInt(main.offsetTop) > -totalHeight && currentPage < 6) {
+                currentPage++
+                toPage(-position[currentPage])
             }
-            if(delta < 0 && parseInt(main.offsetTop) < 0) {
-                now = now + hei;
-                toPage(now);
+            if(delta < 0 && parseInt(main.offsetTop) < 0 && currentPage > 0) {
+                currentPage--
+                toPage(-position[currentPage])
             }
-            endTime = new Date().getTime();  
+            endTime = new Date().getTime()
+            nowPage(currentPage)
         }
         else{  
-            event.preventDefault();    
+            event.preventDefault()
         }    
     }
-
-    function toPage(now){        
-        $("#main").animate({top:(now+'px')}, 1000);
+    function toPage(now){
         console.log(now)
+        if (now === 0) {
+            $('.menu__main_menu').fadeOut(200, function () {
+                $("#main").animate({top:(now+'px')}, 600, 'swing', function () {
+                    $('.menu__main_menu').fadeIn(200, function () {
+                    
+                    })
+                })
+            })
+        } else {
+            
+            $('.menu__main_menu').fadeOut(200, function() {
+                $("#main").animate({top:(now+'px')}, 600, 'swing', function () {
+                    if (currentPage !== 5) {
+                        $('.menu__main_menu').fadeIn(200, function () {
+                    
+                        })
+                    }
+                    
+                })
+            })
+        }
+        console.log(currentPage)
     }
 
     // Menu Listeners
@@ -110,6 +136,11 @@ $(document).ready(function(){
     */
 
     // main_menu listener
+    $("#abstract").click(function(){
+        currentPage = 3
+        toPage(-position[currentPage])
+    } )
+
 
     $("#parent").click(function(){
         $(".menu").removeClass("off");
@@ -120,11 +151,25 @@ $(document).ready(function(){
         $("body").addClass("no_scroll");
         $('.parent_page_btn').css('z-index', '505')
         $('#parent_article_list').css('z-index', '500')
+        // animate on type button
+        for (let [index, iter] of (Array.from($('.parent_page_btn input'))).entries()) {
+            $(iter).delay(index * 100).animate({
+                opacity: 1,
+                transform: {
+                    x: 80
+                }
+            }, 200)
+        }
     });
 
     $(".parent__close").click(function(){
         page ("parentClose");
         $(".parent__return").removeClass("on").addClass("off");
+        // reset animate property
+        // animate on type button
+        for (iter of $('.parent_page_btn input')) {
+            $(iter).css({ opacity: 0, transform: "translateX(0)" })
+        }
         $('#parent_article_title').html('')
         $('#parent_article_content').html('')
         $('#parent_article_time').text('')
@@ -260,6 +305,14 @@ $(document).ready(function(){
             else
                 $("."+type+"__description--no").text( slide_no );
         }, 10);
+    }
+
+
+    function nowPage ( num ) {
+        if ( num == 5 )
+            $(".intro__scroll").fadeOut(500);         
+        else
+            $(".intro__scroll").fadeIn(500);
     }
     /*  
     // side bar listener
