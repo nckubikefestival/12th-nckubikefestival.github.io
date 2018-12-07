@@ -1,64 +1,89 @@
-$(document).ready(function(){
-
-    // initialize firebase setting.
-    const config = {
-        apiKey: "AIzaSyC23x9CwP2TuVmXh90R3Xg55AcfL6h_jII",
-        authDomain: "ncku-bikefestival-12th.firebaseapp.com",
-        databaseURL: "https://ncku-bikefestival-12th.firebaseio.com",
-        projectId: "ncku-bikefestival-12th",
-        storageBucket: "ncku-bikefestival-12th.appspot.com",
-        messagingSenderId: "309069279460"
-    }
-    firebase.initializeApp(config)
-    const db = firebase.firestore()
-    // Disable deprecated features
-    db.settings({
-        timestampsInSnapshots: true
-    })
-    // articles fetch
-    const articles = {
-        exam: [],
-        health: [],
-        institution: [],
-        communication: [],
-        future: []
-    }
-    db.collection("articles").get()
-    .then(function (result) {
-        for (doc of result.docs) {
-            const data = doc.data()
-            if (data.Type) {
-                articles[data.Type].push(data)
+window.config = {
+    initializeFirebase: function () {
+        // initialize firebase setting.
+        const config = {
+            apiKey: "AIzaSyC23x9CwP2TuVmXh90R3Xg55AcfL6h_jII",
+            authDomain: "ncku-bikefestival-12th.firebaseapp.com",
+            databaseURL: "https://ncku-bikefestival-12th.firebaseio.com",
+            projectId: "ncku-bikefestival-12th",
+            storageBucket: "ncku-bikefestival-12th.appspot.com",
+            messagingSenderId: "309069279460"
+        }
+        firebase.initializeApp(config)
+        const db = firebase.firestore()
+        // Disable deprecated features
+        db.settings({
+            timestampsInSnapshots: true
+        })
+        this.db = db  
+    },
+    initializeSetting: function () {
+        this.pagePosition = [0, this.pageHeight, this.pageHeight * 2, this.pageHeight * 3, this.pageHeight * 4, this.pageHeight * 4 + 350]
+        this.components.wrap = $('#wrap')
+        this.components.main = $('#main')
+        this.components.menu = $('.menu__main_menu')
+        this.components.parentPage = $('#parent')
+    },
+    fetchArticles: function () {
+        const parentArticlesRef = this.articles.parent
+        this.db.collection("articles").get()
+        .then(function (result) {
+            for (doc of result.docs) {
+                const data = doc.data()
+                if (data.Type) {
+                    parentArticlesRef[data.Type].push(data)
+                }
             }
+            // order the array by timestamp
+            for (iter of Object.keys(parentArticlesRef)) {
+                parentArticlesRef[iter].sort((a, b) => a.Timestamp - b.Timestamp)
+            }
+            // console.log(result.docs[0].data())
+        })
+    },
+    articles: {
+        parent: {
+            exam: [],
+            health: [],
+            institution: [],
+            communication: [],
+            future: []
         }
-        // order the array by timestamp
-        for (iter of Object.keys(articles)) {
-            articles[iter].sort((a, b) => a.Timestamp - b.Timestamp)
-        }
-        // console.log(result.docs[0].data())
-        console.log(articles)
-    })
-    let currentParentTab = ''
+    },
+    currentParentTab: '',
+    currentPage: 0,
+    pageHeight: document.body.clientHeight,
+    pagePosition: [],
+    components: {
+        main: null,
+        wrap: null,
+        menu: null,
+        parentPage: null,
+    }
+}
 
-  
+
+$(document).ready(function() {
+    // initialize firebase
+    config.initializeFirebase()
+    // initialize setting
+    config.initializeSetting()
+    // fetch all articles from firestore
+    config.fetchArticles()
 
     // full screen scroll
-    const wrap = document.getElementById("wrap")
-    const main = document.getElementById("main")
-    const hei = document.body.clientHeight
-    const totalHeight = hei * 4 + 350
-    let position = [0, hei, hei * 2, hei * 3, hei * 4, hei * 4 + 350]
-    let currentPage = 0
-    wrap.style.height = hei + "px"
+    const totalHeight = config.pageHeight * 4 + 350
+    config.components.wrap[0].style.height = config.pageHeight + "px"
+    // select all page div
     let obj = document.getElementsByTagName("div")
     for(let i = 0; i < obj.length; i++) {
         if(obj[i].className.includes(' page')) {
-            obj[i].style.height = hei + "px"
+            obj[i].style.height = window.config.pageHeight + "px"
         }
     }
     let startTime = 0
     let endTime = 0
-    
+    // config scroll event
     if ((navigator.userAgent.toLowerCase().indexOf("firefox") != -1)){   
         document.addEventListener("DOMMouseScroll", scrollFun, false)
     } 
@@ -70,8 +95,7 @@ $(document).ready(function(){
     }  
     else{  
         document.onmousewheel = scrollFun
-    }  
-
+    }
     function scrollFun(event) {
         if ($('.parent')[0].className.includes('on')) {
             return
@@ -79,45 +103,33 @@ $(document).ready(function(){
         startTime = new Date().getTime()
         var delta = event.detail || (-event.wheelDelta)
         if ((endTime - startTime) < -1000) {
-            if(delta > 0 && parseInt(main.offsetTop) > -totalHeight && currentPage < 6) {
-                currentPage++
-                toPage(-position[currentPage])
+            if(delta > 0 && parseInt(main.offsetTop) > -totalHeight && config.currentPage < 6) {
+                config.currentPage++
+                toPage(-config.pagePosition[config.currentPage])
             }
-            if(delta < 0 && parseInt(main.offsetTop) < 0 && currentPage > 0) {
-                currentPage--
-                toPage(-position[currentPage])
+            if(delta < 0 && parseInt(main.offsetTop) < 0 && config.currentPage > 0) {
+                config.currentPage--
+                toPage(-config.pagePosition[config.currentPage])
             }
             endTime = new Date().getTime()
-            nowPage(currentPage)
+            nowPage(config.currentPage)
         }
         else{  
             event.preventDefault()
+            event.stopPropagation()
         }    
     }
     function toPage(now){
         console.log(now)
-        if (now === 0) {
-            $('.menu__main_menu').fadeOut(200, function () {
-                $("#main").animate({top:(now+'px')}, 600, 'swing', function () {
-                    $('.menu__main_menu').fadeIn(200, function () {
-                    
+        config.components.menu.fadeOut(200, function () {
+            config.components.main.animate({top:(now+'px')}, 600, 'swing', function () {
+                if (config.currentPage !== 5) {
+                    config.components.menu.fadeIn(200, function () {
+                
                     })
-                })
+                }
             })
-        } else {
-            
-            $('.menu__main_menu').fadeOut(200, function() {
-                $("#main").animate({top:(now+'px')}, 600, 'swing', function () {
-                    if (currentPage !== 5) {
-                        $('.menu__main_menu').fadeIn(200, function () {
-                    
-                        })
-                    }
-                    
-                })
-            })
-        }
-        console.log(currentPage)
+        })
     }
 
     // Menu Listeners
@@ -137,8 +149,8 @@ $(document).ready(function(){
 
     // main_menu listener
     $("#abstract").click(function(){
-        currentPage = 3
-        toPage(-position[currentPage])
+        config.currentPage = 3
+        toPage(-config.pagePosition[config.currentPage])
     } )
 
 
@@ -197,7 +209,7 @@ $(document).ready(function(){
         $('#parent_article_list').css('z-index', '505')
         $('.subpage_title').css('background', "url('./img/parent_exam.svg') no-repeat")
         $(".parent__return").removeClass("off").addClass("on");
-        currentParentTab = 'exam'
+        config.currentParentTab = 'exam'
         refreshParentList()
     })
 
@@ -208,7 +220,7 @@ $(document).ready(function(){
         $('#parent_article_list').css('z-index', '505')
         $('.subpage_title').css('background', "url('./img/parent_rule.svg') no-repeat")
         $(".parent__return").removeClass("off").addClass("on");
-        currentParentTab = 'institution'
+        config.currentParentTab = 'institution'
         refreshParentList()
     });
 
@@ -219,7 +231,7 @@ $(document).ready(function(){
         $('#parent_article_list').css('z-index', '505')
         $('.subpage_title').css('background', "url('./img/parent_relationship.svg') no-repeat")
         $(".parent__return").removeClass("off").addClass("on");
-        currentParentTab = 'communication'
+        config.currentParentTab = 'communication'
         refreshParentList()
     });
 
@@ -230,7 +242,7 @@ $(document).ready(function(){
         $('#parent_article_list').css('z-index', '505')
         $('.subpage_title').css('background', "url('./img/parent_kidHealth.svg') no-repeat")
         $(".parent__return").removeClass("off").addClass("on");
-        currentParentTab = 'health'
+        config.currentParentTab = 'health'
         refreshParentList()
     });
 
@@ -241,7 +253,7 @@ $(document).ready(function(){
         $('#parent_article_list').css('z-index', '505')
         $('.subpage_title').css('background', "url('./img/parent_trend.svg') no-repeat")
         $(".parent__return").removeClass("off").addClass("on");
-        currentParentTab = 'future'
+        config.currentParentTab = 'future'
         refreshParentList()
     });
 
@@ -472,21 +484,21 @@ $(document).ready(function(){
     */
 
    function refreshParentList() {
-    if (articles[currentParentTab].length > 0) {
+    if (config.articles.parent[config.currentParentTab].length > 0) {
         // display first articles
-        $('#parent_article_title').html(articles[currentParentTab][0].Title)
-        $('#parent_article_content').html(articles[currentParentTab][0].Content)
-        $('#parent_article_time').text(articles[currentParentTab][0].Timestamp.toDate().toDateString())
+        $('#parent_article_title').html(config.articles.parent[config.currentParentTab][0].Title)
+        $('#parent_article_content').html(config.articles.parent[config.currentParentTab][0].Content)
+        $('#parent_article_time').text(config.articles.parent[config.currentParentTab][0].Timestamp.toDate().toDateString())
         // list the title of the articles
-        for (let [index, iter] of articles[currentParentTab].entries()) {
+        for (let [index, iter] of config.articles.parent[config.currentParentTab].entries()) {
             $('#parent_article_list ul').append(`<li data-key=${index}>${iter.Title}</li>`)
         }
     }
     $('#parent_article_list ul li').click(function () {
         let index = this.dataset.key
-        $('#parent_article_title').html(articles[currentParentTab][index].Title)
-        $('#parent_article_content').html(articles[currentParentTab][index].Content)
-        $('#parent_article_time').text(articles[currentParentTab][index].Timestamp.toDate().toDateString())
+        $('#parent_article_title').html(cofig.articles.parent[config.currentParentTab][index].Title)
+        $('#parent_article_content').html(config.articles.parent[config.currentParentTab][index].Content)
+        $('#parent_article_time').text(config.articles.parent[config.currentParentTab][index].Timestamp.toDate().toDateString())
     })
 }
 

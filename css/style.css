@@ -670,20 +670,20 @@ body {
     }
     .intro__num.num1  {
       position: absolute;
-      width: 30%;
+      width: 25%;
       height: 400px;
-      left: 0vw;
-      margin-top: 20vh;
+      left: 4vw;
+      margin-top: 25vh;
       background: none;
       background-size: 100% 100%;
       background-repeat: no-repeat !important;
     }
     .intro__num.num2 {
       position: absolute;
-      width: 30%;
+      width: 25%;
       height: 400px;
-      left: 8vw;
-      margin-top: 20vh;
+      left: 10vw;
+      margin-top: 25vh;
       background: none;
       background-size: 100% 100%;
       background-repeat: no-repeat !important;
