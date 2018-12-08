@@ -63,8 +63,6 @@
 		
 		}
 
-		console.log(fx.now);
-
 		fx.$elem.css(vendorPrefix + "Transform",
 			("translate" + (fx.now.translate.bIs3d ? "3d" : "") + "(" + fx.now.translate.x + "px," + fx.now.translate.y + "px" + (fx.now.translate.bIs3d ? ("," + fx.now.translate.z + "px") : "") + ")") +
 			((fx.now.rotate.both && !fx.now.rotate.x && !fx.now.rotate.y) ? "rotate(" + (fx.now.rotate.both) + "deg)" : "") +
