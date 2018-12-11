@@ -10,6 +10,7 @@ window.config = {
     },
     currentParentTab: '',
     currentPage: 0,
+    currentDeptTab: '',
     pageHeight: document.body.clientHeight,
     pagePosition: [],
     components: {
@@ -37,7 +38,7 @@ window.config = {
         this.db = db  
     },
     initializeSetting: function () {
-        this.pagePosition = [0, this.pageHeight, this.pageHeight * 2, this.pageHeight * 3, this.pageHeight * 4, this.pageHeight * 4 + 350]
+        this.pagePosition = [0, this.pageHeight, this.pageHeight * 2, this.pageHeight * 3, this.pageHeight * 4, this.pageHeight * 5, this.pageHeight * 5 + 350]
         this.components.wrap = $('#wrap')
         this.components.main = $('#main')
         this.components.menu = $('.menu__main_menu')
@@ -75,7 +76,7 @@ window.config = {
             startTime = new Date().getTime()
             var delta = event.detail || (-event.wheelDelta)
             if ((endTime - startTime) < -1000) {
-                if(delta > 0 && parseInt(main.offsetTop) > -totalHeight && config.currentPage < 6) {
+                if(delta > 0 && parseInt(main.offsetTop) > -totalHeight && config.currentPage < 7) {
                     config.currentPage++
                     config.toPage(-config.pagePosition[config.currentPage])
                 }
@@ -114,9 +115,61 @@ window.config = {
         }
         document.addEventListener('click', clickEffect);
 
+        $('.menu__burger').click(function () {
+            config.components.menu.fadeIn(200)
+            $(this).fadeOut(200)
+        })
+       
+        /* Department page */
 
+        // config department button click event
+        $('.dept__college').click(function () {
+            const allType = Array.from($('.dept__college'))
+            allType.forEach(target => {
+                $(target).removeClass('active')
+                // $(`.${$(target).data('key')}`).removeClass(`rotate-${$(target).data('key')}-disappear`)
+                if ($(`.${$(target).data('key')}`).hasClass(`rotate-${config.currentDeptTab}`)) {
+                    $(`.${$(target).data('key')}`).removeClass(`rotate-${config.currentDeptTab}`)
+                    $(`.${$(target).data('key')}`).addClass(`rotate-${config.currentDeptTab}-disappear`)
+                }
+                
+            })
+            $(this).addClass('active')
+            console.log(this)
+            config.currentDeptTab = $(this).data('key')
+            $(`.${$(this).data('key')}`).addClass(`rotate-${$(this).data('key')}`)
+            if ($(`.${$(this).data('key')}`).hasClass(`rotate-${$(this).data('key')}-disappear`)) {
+                $(`.${$(this).data('key')}`).removeClass(`rotate-${$(this).data('key')}-disappear`)
+            }
+            anime({
+                targets: '#chain_path > path',
+                strokeDashoffset: [anime.setDashoffset, 0],
+                easing: 'easeInOutCubic',
+                duration: 400
+            })
+            $('.dept__chain1').animate({
+                transform: {
+                    rotate: 60
+                }
+            }, 400, 'linear')
+            $('.dept__chain2').animate({
+                transform: {
+                    rotate: 60
+                }
+            }, 400, 'linear')
+        })
+
+
+        $("#news").click(function () {
+            config.currentPage = 1
+            config.toPage(-config.pagePosition[config.currentPage])
+        } )
+        $("#dep_intro").click(function () {
+            config.currentPage = 2
+            config.toPage(-config.pagePosition[config.currentPage])
+        } )
         $("#abstract").click(function () {
-            config.currentPage = 3
+            config.currentPage = 4
             config.toPage(-config.pagePosition[config.currentPage])
         } )
         // parent button click event
@@ -442,12 +495,15 @@ window.config = {
     toPage: function toPage(now){
         console.log(now)
         config.components.menu.fadeOut(200, function () {
-            config.components.main.animate({top:(now+'px')}, 600, 'swing', function () {
-                if (config.currentPage !== 5) {
+            $('.menu__burger').fadeIn(200)
+            config.components.main.animate({ top: (now+'px') }, 600, function () {
+                
+                /* if (config.currentPage !== 6) {
                     config.components.menu.fadeIn(200, function () {
                 
                     })
                 }
+                */
             })
         })
     }
