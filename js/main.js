@@ -45,7 +45,7 @@ window.config = {
         this.components.parentPage = $('#parent')
     },
     initializeFullScroll: function () {
-        const totalHeight = config.pageHeight * 4 + 350
+        const totalHeight = config.pageHeight * 5 + 350
         config.components.wrap[0].style.height = config.pageHeight + "px"
         // select all page div and reset height
         let obj = document.getElementsByTagName("div")
@@ -497,7 +497,6 @@ window.config = {
         config.components.menu.fadeOut(200, function () {
             $('.menu__burger').fadeIn(200)
             config.components.main.animate({ top: (now+'px') }, 600, function () {
-                
                 /* if (config.currentPage !== 6) {
                     config.components.menu.fadeIn(200, function () {
                 
