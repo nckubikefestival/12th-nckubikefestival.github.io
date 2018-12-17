@@ -735,9 +735,13 @@ $(document).ready(function() {
         if (spantimeExam > 0) {
             $('.intro__num.num1').css('background', "url('./img/number_" + Math.floor(dayExam / 10) +  ".svg')")
             $('.intro__num.num2').css('background', "url('./img/number_" + dayExam % 10 +  ".svg')")
+            $('.news__num.num1').css('background', "url('./img/number_" + Math.floor(dayExam / 10) +  ".svg')")
+            $('.news__num.num2').css('background', "url('./img/number_" + dayExam % 10 +  ".svg')")
         } else { // 避免倒數變成負的
             $('.intro__num.num1').css('background', url(`./img/number_0.svg`))
             $('.intro__num.num2').css('background', url(`./img/number_0.svg`))
+            $('.news__num.num1').css('background', url(`./img/number_0.svg`))
+            $('.news__num.num2').css('background', url(`./img/number_0.svg`))
         }
         if (spantimeActivity > 0) {
             $('.menu__activity__num.num1').css('background', "url('./img/number_" + Math.floor(dayActivity / 10) +  ".svg')")
