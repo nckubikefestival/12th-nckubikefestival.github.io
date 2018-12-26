@@ -1077,6 +1077,8 @@ body {
   }
   .intro {
     position: relative;
+    display: flex;
+    align-items: center;
     left: 0;
     top: 0;
     height: 100vh;
@@ -1124,37 +1126,35 @@ body {
     }
     .intro__cont{
       position: absolute;
+      display: flex;
+      align-items: flex-start;
       right: 0px;
-      width: 30%;
-      height: 400px;
-      left: 8vw;
-      margin-top: 30vh;
+      width: 25vw;
+      height: 25vw;
+      left: 13vw;
+      margin-top: 3vw;
       background: url("../img/countdown.svg");
       background-position: right bottom;
       background-repeat: no-repeat;
-      background-size: 80% 80%; 
+      background-size: 100% 100%; 
     }
     .intro__num {
       z-index: 10;
     }
     .intro__num.num1  {
-      position: absolute;
-      width: 25%;
-      height: 400px;
-      left: 4vw;
-      margin-top: 25vh;
+      display: block;
+      width: 40%;
+      height: 40%;
+
       background: none;
-      background-size: 100% 100%;
       background-repeat: no-repeat !important;
     }
     .intro__num.num2 {
-      position: absolute;
-      width: 25%;
-      height: 400px;
-      left: 10vw;
-      margin-top: 25vh;
+      display: block;
+      width: 40%;
+      height: 40%;
+      margin-left: -5vw;
       background: none;
-      background-size: 100% 100%;
       background-repeat: no-repeat !important;
     }
     .menu__activity__num {
@@ -1183,11 +1183,10 @@ body {
     .intro__dot {
       position: absolute;
       display: flex;
-      right: 0px;
-      width: 9%;
-      height: 100px;
-      left: 26vw;
-      margin-top: 35vh;
+      width: 35%;
+      height: 10%;
+      left: 13vw;
+      top: 5vw;
     }
     #dot1,#dot2,#dot3{
       flex: 1;
