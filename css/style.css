@@ -338,8 +338,8 @@
   background-color: #d9d4b3;
 }
 #logo svg {
-  width: 1370px;
-  height: 900px;
+  width: 100vw;
+  height: 100vh;
   display: block;
   margin: 0 auto;
   transform: translate(-25px, 0);
